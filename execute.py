@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 from unittest import TestProgram
 from csvfiledata import *
+from fixData import *
+from fixData.age import fixAge
+from fixData.dependents import fixDependents
 files = [
     'demographics.csv', 'location.csv', 'satisfaction.csv', 'services.csv', 'status.csv']
 
@@ -24,8 +27,9 @@ if __name__ == '__main__':
         sortedContent.append([row[0:] for row in resultContent if row[0] == _id][0])
     resultContent = sortedContent
 
-    # move Churn Category to second column
-    # category list: ID, Churn category, ...
+    resultHeader, resultContent = fixAge(resultHeader, resultContent)
+    resultHeader, resultContent = fixDependents(resultHeader, resultContent)
+
     statusIndex = resultHeader.index('Churn Category')
     resultHeader = [resultHeader[0]] + [resultHeader[statusIndex]] + resultHeader[1:statusIndex] + resultHeader[statusIndex+1:]
     for i in range(len(resultContent)):

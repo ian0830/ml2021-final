@@ -1,0 +1,10 @@
+/liblinear*/**
+/libsvm*/**
+
+*_set
+
+/**/__pycache__/**
+
+output.txt
+
+adaBoost/*.csv

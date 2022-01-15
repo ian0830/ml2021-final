@@ -4,11 +4,6 @@ from csvfiledata import *
 files = [
     'demographics.csv', 'location.csv', 'satisfaction.csv', 'services.csv', 'status.csv']
 
-def test_print(data, lenLimit = 1):
-    if len(data) < lenLimit: print(*data, sep='\n')
-    else: 
-        for i in range(lenLimit): print(data[i])
-
 if __name__ == '__main__':
     # merging to a big spreadsheet
     resultHeader, resultContent= [],[[]]
@@ -100,4 +95,4 @@ if __name__ == '__main__':
     # print(resultHeader)
     
     # 輸出到result.csv
-    write_file('result.csv', resultHeader[1:],[row[1:] for row in resultContent])
+    write_file('result_test.csv', resultHeader[1:],[row[1:] for row in resultContent])

@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-from unittest import TestProgram
 from csvfiledata import *
 from fixData import *
 from fixData.age import fixAge
 from fixData.dependents import fixDependents
+from fixData.refer import fixRefer
+from fixData.services import fixMoney
+
 files = [
     'demographics.csv', 'location.csv', 'satisfaction.csv', 'services.csv', 'status.csv']
 
@@ -29,6 +31,17 @@ if __name__ == '__main__':
 
     resultHeader, resultContent = fixAge(resultHeader, resultContent)
     resultHeader, resultContent = fixDependents(resultHeader, resultContent)
+    resultHeader, resultContent = fixRefer(resultHeader, resultContent)
+
+
+
+    # write_file('before.csv', resultHeader[1:],[row[1:] for row in resultContent])
+
+    resultHeader, resultContent = fixMoney(resultHeader, resultContent)
+
+    # write_file('after.csv', resultHeader[1:],[row[1:] for row in resultContent])
+
+
 
     statusIndex = resultHeader.index('Churn Category')
     resultHeader = [resultHeader[0]] + [resultHeader[statusIndex]] + resultHeader[1:statusIndex] + resultHeader[statusIndex+1:]
@@ -97,6 +110,13 @@ if __name__ == '__main__':
     # for i in range(len(resultContent)): resultContent[i] = [resultContent[i][j] for j in range(len(resultContent[i])) if j in selectedIndex]
 
     # print(resultHeader)
-    
+    # print(resultContent[0][0:4])
+    # output0 = sample([row for row in resultContent if row[1] == 0],116)
+    # output1 = sample([row for row in resultContent if row[1] == 1],116)
+    # output2 = sample([row for row in resultContent if row[1] == 2],116)
+    # output3 = sample([row for row in resultContent if row[1] == 3],116)
+    # output4 = sample([row for row in resultContent if row[1] == 4],116)
+    # output5 = sample([row for row in resultContent if row[1] == 5],116)
+    # resultContent = output0 + output1 + output2 + output3 + output4 + output5
     # 輸出到result.csv
-    write_file('result_test.csv', resultHeader[1:],[row[1:] for row in resultContent])
+    write_file('adaBoost/result_test.csv', resultHeader[1:],[row[1:] for row in resultContent])

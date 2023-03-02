@@ -1,3 +1,3 @@
 # ml2021-final
 
-IanTA is God
+IanTA say that he is the walking lord
